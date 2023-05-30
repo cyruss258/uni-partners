@@ -124,4 +124,15 @@ WHERE a.total_cost <= 1.3 * temp.same_type_state_average AND (foreign_2018 + for
 ```
 
 ## Step 5:
-Using the table from step 4, visualized the results and picked top 5 to focus on as best candidates to partner up with.
+joining with rank table to get the rankings and filtering out the ones that have no ranking
+```
+SELECT b.rank, a.*
+FROM `prism_test.SC-Uni-Semi-Final` a
+LEFT JOIN `prism_test.SC-Ranking` b
+  ON a.Unit_Id = b.unit_id
+WHERE rank IS NOT NULL
+ORDER BY rank, state_rank
+```
+
+## Step 6:
+Using the table from step 5 visualized the results and filtered using table from step 1 to pick up top 5 institutes to focus on as best candidates to partner up with.
